@@ -1,57 +1,123 @@
-# Hallucination Simulator: AI vs. Human Brain
+<div align="center">
 
-Welcome to the **Hallucination Simulator**, an interactive 3D application that explores the fascinating parallels between how Artificial Intelligence (Large Language Models, Neural Networks) and the Human Brain experience "hallucinations."
+# 🧠 Hallucination Simulator ⚡
+**An Interactive 3D Web Application Exploring AI vs. Human Cognitive Errors**
 
-## Conceptual Overview
+[![Three.js](https://img.shields.io/badge/Three.js-Black?logo=three.js)](https://threejs.org/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Vanilla JS](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Web Audio API](https://img.shields.io/badge/Web_Audio-API-blue)](#)
 
-The term "hallucination" in AI was borrowed from psychology, but the core mechanisms behind them share striking similarities. Both systems are inherently **predictive engines** attempting to make sense of incomplete, noisy, or chaotic data by filling in the gaps using prior knowledge (training data vs. memories/evolutionary wiring). 
+*A cinematic, side-by-side simulation demonstrating what happens when predictive engines—both biological and artificial—fail.*
 
-When these predictive engines fail, they generate outputs that are disconnected from reality—a *hallucination*.
-
----
-
-### The Parallels of Hallucination
-
-| System | Concept | Description |
-| :--- | :--- | :--- |
-| **Both** | **Gap Filling** | When faced with missing information, both systems auto-complete the void using statistical likelihood (AI) or imagination (Brain). |
-| **AI** | **Out-of-Distribution Query** | Being asked a question completely outside its training data forces the AI to output highly structured but fabricated garbage. |
-| **Brain** | **Sensory Deprivation** | When isolated from external stimuli (e.g., in a dark, quiet room), the brain's visual cortex fires randomly, generating its own sensory reality. |
-| **AI** | **Overfitting** | Memorizing training data perfectly but failing to generalize, causing the model to get "stuck" in repetitive prediction loops. |
-| **Brain** | **Cognitive Bias / Pareidolia** | The evolutionary survival instinct to over-fit patterns, leading us to see faces in clouds or hear voices in white noise. |
-| **AI** | **High Confidence Error** | The softmax function mathematically forces the network to pick *something*, resulting in an incorrect answer delivered with 99% confidence. |
-| **Brain** | **False Memories** | The brain rewrites memory during recall, filling gaps with plausible fabrications that the subject remembers with absolute certainty. |
+</div>
 
 ---
 
-## Technical Visualizations
+## 📖 Table of Contents
+- [📖 Table of Contents](#-table-of-contents)
+- [🚀 Quick Start](#-quick-start)
+- [🌌 The Parallels: AI vs. The Brain](#-the-parallels-ai-vs-the-brain)
+- [🎮 Key Features & Interactive Scenarios](#-key-features--interactive-scenarios)
+- [🛠️ Technical Architecture](#️-technical-architecture)
+- [🤝 Contributing](#-contributing)
 
-The simulator visualizes these concepts using dual 3D engines built with **Three.js**.
+---
 
+## 🚀 Quick Start
+
+Run the simulation locally in seconds:
+
+```bash
+# Clone the repository
+git clone https://github.com/iamnih4l/Hallucination-Simulation-3D-Interactive-Web-App.git
+
+# Navigate into the project
+cd Hallucination-Simulation-3D-Interactive-Web-App
+
+# Install dependencies (Vite & Three.js)
+npm install
+
+# Start the interactive development server
+npm run dev
+```
+Navigate to `http://localhost:5173/` in your browser to start the simulation!
+
+---
+
+## 🌌 The Parallels: AI vs. The Brain
+
+The term "hallucination" in Artifical Intelligence was borrowed from psychology. But how similar are they really? Both systems are **predictive engines** attempting to make sense of noisy, chaotic data by filling in gaps using prior knowledge (training weights or evolutionary memory). When these engines fail, a hallucination is born.
+
+<details>
+<summary><b>🧩 Gap Filling / Pattern Completion</b> (Click to expand)</summary>
 <br>
 
-### 1. The AI Neural Network (Left Panel)
+*   **AI (Pattern Completion):** When returning strings from incomplete prompts, the mathematical model makes probabilistic leaps to fill the textual void.
+*   **Brain (Imagination/Pareidolia):** The brain abhors a vacuum. When staring at clouds or static noise, the visual cortex forces pattern recognition, causing you to "see" faces (Pareidolia).
+</details>
 
-![AI Neural Network](file:///C:/Users/nihal/.gemini/antigravity/brain/25d16469-d46f-41e2-9593-998a642d4bd8/side_by_side_active_1774279348506.png)
+<details>
+<summary><b>🕳️ Blackout / Sensory Deprivation</b> (Click to expand)</summary>
+<br>
 
-The AI is visualized as a deeply layered neural network. 
-*   **Normal State:** Data tokens (represented as cyan particles) flow smoothly from the input layer to the output layer through deep blue connections.
-*   **Hallucination State:** When noise is injected or context is lost, the pathways turn a chaotic red/orange. The visualization demonstrates "incorrect" nodes lighting up with intense emissive glows, representing probability spikes on the wrong tokens (High Confidence Errors) or chaotic dispersion (Noisy input).
+*   **AI (Out-of-Distribution Data):** When fed prompts completely outside its training distribution, the AI's internal representation collapses into chaotic guesswork.
+*   **Brain (Sensory Deprivation):** When isolated in a dark, silent anechoic chamber, the human brain begins generating its own stimuli—causing vivid geometric hallucinations and phantom noises to compensate for the lack of input.
+</details>
 
-### 2. The Human Brain (Right Panel)
+<details>
+<summary><b>🔁 Infinite Loops / Overfitting</b> (Click to expand)</summary>
+<br>
 
-The brain is visualized as an intricate model of distinct functional regions:
-*   **Visual Cortex (Green):** Processes visual input. Misfires here cause visual geometry or distorted perception (e.g., Migraine Auras).
-*   **Prefrontal Cortex (Cyan):** Handles logic and reality testing. When fatigued (e.g., Sleep Deprivation), it fails to suppress the chaotic signals from other regions.
-*   **Amygdala (Red/Orange center):** The fear/stress center. During Stress Overload scenarios, this region pulses aggressively, hijacking other neural pathways and forcing the brain to interpret neutral data as a threat.
-*   **Temporal Lobes (Yellow):** The memory and pattern recognition centers. Hyperactivity here triggers pareidolia and memory distortion.
+*   **AI (Repetition / Overfitting):** Heavy reinforcement on a specific corpus can cause an AI to get "stuck" generating the exact same phrase infinitely.
+*   **Brain (OCD / Rumination):** The biological equivalent of overfitting; neural pathways become hyper-reinforced, keeping the brain stuck in compulsive logical or emotional loops.
+</details>
 
-## Interactive Capabilities
+<details>
+<summary><b>🎯 False Certainty</b> (Click to expand)</summary>
+<br>
 
-The simulation allows you to dynamically trigger and control these states:
-*   **Simultaneous Execution:** You can run an AI scenario (like "Prompt Injection") and a Brain scenario (like "High Fever Delirium") side-by-side to visually compare the chaotic signal propagation in both networks.
-*   **Live Parameter Sliders:**
-    *   `Noise`, `Data Quality`, and `Context` for the AI.
-    *   `Stress`, `Fatigue`, and `Sensory Input` for the Brain.
-*   **Overlay Mode:** Physically superimposes the two models to show how "Overfitting" in an artificial network physically parallels "Pareidolia" in a chunk of biological nervous tissue. 
-*   **Generative Audio:** The Web Audio API generates a procedural drone that warps, distorts, and glitches in direct proportion to the current calculated hallucination level of the system.
+*   **AI (High Confidence Errors):** Softmax functions force a neural network to choose a token. When the internal probabilities are chaotic, the network might still output a totally incorrect fact with 99.9% statistical confidence.
+*   **Brain (False Memories):** Every time a biological memory is recalled, it is fundamentally rewritten. The brain confidently inserts fabricated details into childhood memories.
+</details>
+
+---
+
+## 🎮 Key Features & Interactive Scenarios
+
+Our application is built entirely as an interactive HUD. You have full `OrbitControls` to rotate, zoom, and pan around the neural anatomy.
+
+### 🌐 Dual 3D Environments
+1. **The AI Neural Network**: Visualized as a multi-layer perceptron. Data tokens (cyan particles) flow through hidden layers. During hallucinations, the pathways ignite in bright red and orange, demonstrating math breaking down.
+2. **The Human Brain Model**: Featuring 8 distinct functional lobes. Watch as the amygdala (stress center) pulses violently, hijacking the prefrontal cortex during "Stress Overload" scenarios.
+
+### 🎛️ Real-Time Parameter Sliders
+Dynamically break the simulation yourself!
+*   **AI Variables**: Adjust `Data Noise`, `Training Quality`, and `Context Window`.
+*   **Brain Variables**: Manipulate human `Stress Levels`, `Fatigue`, and `Sensory Input`.
+
+### ⏱️ 16 Pre-Made Interactive Simulations
+Trigger comprehensive 30-second simulations that alter the 3D models and generative audio:
+*   *AI Scenarios:* Prompt Injections, Overfitting Loops, Context Window Overflows.
+*   *Brain Scenarios:* Sleep Deprivation Misfires, High Fever Delirium, Hypnagogic (Sleep-Transition) Hallucinations.
+
+---
+
+## 🛠️ Technical Architecture
+
+This application was built for **maximum performance and visual fidelity** without relying on heavy frameworks like React or Vue. 
+
+*   **Renderer:** Pure **Three.js** `WebGLRenderer` configured with ACES Filmic Tone Mapping and dense fog for a cinematic, volumetric look.
+*   **Components:** Node geometries, BufferGeometry lines, and Points (particles) update at 60Hz.
+*   **Audio Engine:** Built entirely from scratch using the native Javascript `Web Audio API`. It dynamically generates ambient frequency drones and modulates distortion/glitch nodes in real-time based mathematically on the active `hallucination_level` of the 3D objects.
+*   **UI/CSS:** A minimal glassmorphism dashboard styled strictly with Vanilla CSS, featuring sharp 4px vector corners and monospace technical readouts.
+
+---
+
+## 🤝 Contributing
+
+Fascinated by neural networks or cognitive science? We'd love your contributions! 
+*   **New Scenarios:** Fork the repo and add new cognitive errors to `src/scenarios.js`.
+*   **New Shaders:** Implement custom GLSL shaders to improve the "glitch" aesthetic of hallucinating nodes. 
+
+Feel free to open an Issue or submit a Pull Request.
