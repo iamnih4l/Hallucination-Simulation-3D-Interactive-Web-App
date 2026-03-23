@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hallucination Simulator — AI vs Human Brain</title>
+  <meta name="description" content="Interactive 3D simulation comparing how hallucinations occur in AI systems and the human brain." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/src/styles.css" />
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loader-content">
+      <div class="loader-ring"></div>
+      <h1 class="loader-title">HALLUCINATION<span class="accent">SIM</span></h1>
+      <p class="loader-subtitle">Initializing Neural Environments…</p>
+    </div>
+  </div>
+
+  <!-- Main App -->
+  <div id="app" class="hidden">
+    <!-- Top Navigation -->
+    <header id="top-nav">
+      <div class="nav-left">
+        <h1 class="logo">HALLUCINATION<span class="accent">SIM</span></h1>
+      </div>
+      <div class="nav-center">
+        <div class="view-mode-switcher">
+          <button class="view-btn active" data-mode="split" id="btn-split">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="7" height="16" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="10" y="1" width="7" height="16" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+            Side-by-Side
+          </button>
+          <button class="view-btn" data-mode="ai" id="btn-ai-full">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="9" r="3" stroke="currentColor" stroke-width="1.5"/></svg>
+            AI Focus
+          </button>
+          <button class="view-btn" data-mode="brain" id="btn-brain-full">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="1" y="1" width="16" height="16" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M9 4C7 4 5 6 5 9C5 12 7 14 9 14C11 14 13 12 13 9C13 6 11 4 9 4Z" stroke="currentColor" stroke-width="1.5"/></svg>
+            Brain Focus
+          </button>
+          <button class="view-btn" data-mode="overlay" id="btn-overlay">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="7" cy="9" r="5" stroke="currentColor" stroke-width="1.5" opacity="0.6"/><circle cx="11" cy="9" r="5" stroke="currentColor" stroke-width="1.5" opacity="0.6"/></svg>
+            Overlay
+          </button>
+        </div>
+      </div>
+      <div class="nav-right">
+        <button id="btn-audio-toggle" class="icon-btn" title="Toggle Audio">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        </button>
+        <button id="btn-scenarios-toggle" class="icon-btn primary" title="Scenarios">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          Scenarios
+        </button>
+      </div>
+    </header>
+
+    <!-- Simulation Viewport -->
+    <main id="viewport">
+      <div id="ai-panel" class="sim-panel">
+        <div class="panel-label">
+          <span class="label-icon">⚡</span> AI Neural Network
+        </div>
+        <canvas id="ai-canvas"></canvas>
+        <!-- AI Info Overlay -->
+        <div id="ai-info" class="info-overlay">
+          <div class="info-title">Ready</div>
+          <div class="info-desc">Select a scenario to begin</div>
+        </div>
+      </div>
+      <div id="divider" class="panel-divider">
+        <div class="divider-line"></div>
+        <div class="divider-label">VS</div>
+        <div class="divider-line"></div>
+      </div>
+      <div id="brain-panel" class="sim-panel">
+        <div class="panel-label">
+          <span class="label-icon">🧠</span> Human Brain
+        </div>
+        <canvas id="brain-canvas"></canvas>
+        <!-- Brain Info Overlay -->
+        <div id="brain-info" class="info-overlay">
+          <div class="info-title">Ready</div>
+          <div class="info-desc">Select a scenario to begin</div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Comparison Overlay (shown in overlay mode) -->
+    <div id="comparison-overlay" class="hidden">
+      <canvas id="overlay-canvas"></canvas>
+      <div id="comparison-cards"></div>
+    </div>
+
+    <!-- Scenario Panel (sidebar) -->
+    <aside id="scenario-panel" class="hidden">
+      <div class="panel-header">
+        <h2>Scenarios</h2>
+        <button id="btn-close-scenarios" class="icon-btn">✕</button>
+      </div>
+      <div class="scenario-tabs">
+        <button class="tab-btn active" data-tab="ai">AI Scenarios</button>
+        <button class="tab-btn" data-tab="brain">Brain Scenarios</button>
+      </div>
+      <div id="scenario-cards-container"></div>
+    </aside>
+
+    <!-- Control Bar -->
+    <footer id="control-bar">
+      <div class="transport-controls">
+        <button id="btn-rewind" class="ctrl-btn" title="Rewind">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M11 18V6l-8.5 6 8.5 6zm.5-6l8.5 6V6l-8.5 6z"/></svg>
+        </button>
+        <button id="btn-play" class="ctrl-btn play-btn" title="Play/Pause">
+          <svg id="play-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          <svg id="pause-icon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" class="hidden"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        </button>
+        <button id="btn-step" class="ctrl-btn" title="Step Forward">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M5 18l8.5-6L5 6v12zm9-12v12l8.5-6L14 6z"/></svg>
+        </button>
+      </div>
+
+      <div class="timeline-bar">
+        <div class="timeline-track">
+          <div id="timeline-progress" class="timeline-fill"></div>
+        </div>
+        <span id="timeline-label" class="timeline-time">0:00 / 0:10</span>
+      </div>
+
+      <div class="slider-controls">
+        <div class="slider-group" id="ai-sliders">
+          <label>Noise <input type="range" id="slider-noise" min="0" max="100" value="0" /><span id="val-noise">0</span></label>
+          <label>Data Quality <input type="range" id="slider-quality" min="0" max="100" value="100" /><span id="val-quality">100</span></label>
+          <label>Context <input type="range" id="slider-context" min="0" max="100" value="100" /><span id="val-context">100</span></label>
+        </div>
+        <div class="slider-group" id="brain-sliders">
+          <label>Stress <input type="range" id="slider-stress" min="0" max="100" value="0" /><span id="val-stress">0</span></label>
+          <label>Fatigue <input type="range" id="slider-fatigue" min="0" max="100" value="0" /><span id="val-fatigue">0</span></label>
+          <label>Sensory <input type="range" id="slider-sensory" min="0" max="100" value="100" /><span id="val-sensory">100</span></label>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="hidden">
+      <div id="tooltip-title"></div>
+      <div id="tooltip-desc"></div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
