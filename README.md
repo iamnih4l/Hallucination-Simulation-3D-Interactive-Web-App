@@ -10,6 +10,8 @@
 
 *A cinematic, side-by-side simulation demonstrating what happens when predictive engines—both biological and artificial—fail.*
 
+### [🔴 Try the Live Simulation](https://hallucination-simulation.vercel.app/)
+
 </div>
 
 ---
